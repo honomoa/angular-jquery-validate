@@ -1,0 +1,40 @@
+<html ng-app="MyApp">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular.min.js"></script>
+    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"></script>
+    <script src="angular-jquery-validate.js"></script>
+    <script>
+      var app = angular.module('MyApp', ['angular-jquery-validate']);
+      app.controller('Ng', ['$scope',function Ng($scope){
+        $scope.eventformvalidate = {
+          rules: {
+            Subject: {
+              required: true
+            },
+            Number: {
+              range: [0,150]
+            }
+          },
+          message: {
+          },
+          validateOnInit: false
+        };
+      }]);
+    </script>
+  </head>
+  <body ng-controller="Ng">
+    <form id="EventForm" formvalidator formvalidatorconfig="eventformvalidate" formvalidatorapi="eventformvalidateapi">
+      <div class="row">
+        <h2>Example for not validateOnInit</h2>
+        <div class="">
+          <input type="text" name="Subject" maxlength="50" class="form-control" data-ng-model="event.subject" />
+        </div>
+        <div class="">
+          <input type="text" name="Number" maxlength="3" class="form-control" data-ng-model="event.number" />
+        </div>
+      </div>
+      <button>Validate it</button>
+    </form>
+  </body>
+</html>
